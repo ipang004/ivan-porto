@@ -21,8 +21,8 @@
 		document.body.style.overflow = selectedCredential ? 'hidden' : '';
 		return () => {
 			document.body.style.overflow = '';
-		}
- 	})
+		};
+	});
 
 	function openModal(project: Project) {
 		selectedProject = project;
@@ -59,7 +59,7 @@
 		);
 
 		sections.forEach((section) => observer.observe(section));
-		
+
 		return () => {
 			window.removeEventListener('mousemove', handleMouseMove);
 			observer.disconnect();
@@ -75,7 +75,6 @@
 </svelte:head>
 
 <main class="dark min-h-screen bg-background bg-dots text-foreground font-body relative overflow-hidden">
-	<!-- Ambient mouse glow -->
 	<div
 		bind:this={glowEl}
 		class="pointer-events-none fixed inset-0 z-0 opacity-15 transition-opacity"
@@ -84,7 +83,6 @@
 
 	<NavBar {activeSection} items={navItems} {profile} onNavigate={scrollTo} />
 
-	<!-- Grid Layout Blueprint -->
 	<div class="relative max-w-5xl mx-auto border-x border-border/20 z-10 bg-background/20 backdrop-blur-[1px]">
 		<HeroSection {profile} onNavigate={scrollTo} />
 
@@ -92,21 +90,21 @@
 			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 		</div>
-		
+
 		<StackSection />
 
 		<div class="border-t border-border/20 relative">
 			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 		</div>
-		
+
 		<ProjectsSection {projects} onOpenModal={openModal} />
 
 		<div class="border-t border-border/20 relative">
 			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 		</div>
-		
+
 		<CredentialsSection {credentials} onOpenImage={(item) => selectedCredential = item} />
 
 		<JourneySection />
@@ -115,7 +113,7 @@
 			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
 		</div>
-		
+
 		<ContactSection />
 	</div>
 
@@ -131,7 +129,6 @@
 			class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 md:p-6"
 			onclick={() => selectedCredential = null}
 		>
-			<!-- Close button -->
 			<button
 				onclick={() => selectedCredential = null}
 				class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 hover:bg-black border border-white/10 flex items-center justify-center text-white transition-colors"
@@ -142,18 +139,16 @@
 				</svg>
 			</button>
 
-			<!-- Modal Box Split Layout -->
-			<div 
+			<div
 				transition:scale={{ duration: 200, start: 0.95 }}
 				class="relative max-w-4xl w-full bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:max-h-[80vh]"
 				onclick={(e) => e.stopPropagation()}
 			>
-				<!-- Sisi Kiri: Gambar -->
 				<div class="relative w-full md:w-1/2 aspect-4/3 md:aspect-auto overflow-hidden bg-black/40 flex items-center justify-center border-b md:border-b-0 md:border-r border-zinc-900">
-					<img 
-						src={selectedCredential.image} 
-						alt="" 
-						class="absolute inset-0 w-full h-full object-cover blur-xl opacity-40 scale-110" 
+					<img
+						src={selectedCredential.image}
+						alt=""
+						class="absolute inset-0 w-full h-full object-cover blur-xl opacity-40 scale-110"
 					/>
 					<img
 						src={selectedCredential.image}
@@ -162,7 +157,6 @@
 					/>
 				</div>
 
-				<!-- Sisi Kanan: Penjelasan -->
 				<div class="p-6 md:p-8 flex-1 flex flex-col justify-between overflow-y-auto">
 					<div class="space-y-4">
 						<div class="space-y-1">

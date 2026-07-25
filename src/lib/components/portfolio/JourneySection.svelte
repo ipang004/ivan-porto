@@ -66,7 +66,6 @@
 	let visibleItems = $state<boolean[]>(journey.map(() => false));
 
 	onMount(() => {
-		// Animate line growth based on scroll
 		const lineObserver = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -79,7 +78,6 @@
 		);
 		if (lineEl) lineObserver.observe(lineEl.parentElement!);
 
-		// Animate each card on scroll
 		const cardObserver = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -103,18 +101,16 @@
 
 <SectionFrame id="journey" eyebrow="journey" title="My Journey">
 	<div class="relative mt-4">
-		<!-- Vertical line -->
 		<div class="absolute left-6 top-0 bottom-0 w-px bg-border/40 md:left-1/2 md:-translate-x-px">
 			<div
 				bind:this={lineEl}
-				class="w-full bg-gradient-to-b from-primary via-secondary to-accent transition-all duration-[2000ms] ease-out"
+				class="w-full bg-linear-to-b from-primary via-secondary to-accent transition-all duration-2000 ease-out"
 				style="height: 0%;"
 			></div>
 		</div>
 
-		<!-- Milestones -->
 		<div class="flex flex-col gap-12 pb-4">
-			{#each journey as milestone, i}
+			{#each journey as milestone, i (milestone.type)}
 				<div
 					bind:this={itemEls[i]}
 					class="relative flex items-start gap-6 md:gap-0
@@ -123,20 +119,16 @@
 						{visibleItems[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}"
 					style="transition-delay: {i * 100}ms"
 				>
-					<!-- Dot on the line -->
-					<div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 z-10 flex items-center justify-center">
+					<div class="absolute left-6 -translate-x-1/2 md:left-1/2 z-10 flex items-center justify-center">
 						<span class="w-3.5 h-3.5 rounded-full border-2 border-background {colorMap[milestone.type].dot} block"></span>
 					</div>
 
-					<!-- Spacer for desktop alternating -->
 					<div class="hidden md:block w-1/2"></div>
 
-					<!-- Card -->
 					<div class="ml-14 md:ml-0 md:w-1/2 {i % 2 === 0 ? 'md:pl-10' : 'md:pr-10'}">
 						<div class="group relative bg-card border border-border/60 rounded-2xl p-5 hover:border-border
 							transition-all duration-300 hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)]">
 
-							<!-- Icon + type badge -->
 							<div class="flex items-center justify-between mb-3">
 								<div class="flex items-center gap-3">
 									<div class="w-10 h-10 flex items-center justify-center rounded-xl border shrink-0 {colorMap[milestone.type].icon}">
@@ -155,7 +147,6 @@
 								</div>
 							</div>
 
-							<!-- Place + Period -->
 							<div class="flex flex-wrap items-center gap-2 mb-3">
 								<span class="font-mono text-[11px] px-2.5 py-1 rounded-full border {colorMap[milestone.type].badge}">
 									{milestone.type === 'education' ? '// education' : milestone.type === 'internship' ? '// internship' : '// work'}
@@ -163,7 +154,6 @@
 								<span class="font-mono text-xs text-muted-foreground/60">{milestone.period}</span>
 							</div>
 
-							<!-- Place -->
 							<p class="font-mono text-xs text-muted-foreground/50 mb-2 flex items-center gap-1.5">
 								<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -172,7 +162,6 @@
 								{milestone.place}
 							</p>
 
-							<!-- Description -->
 							<p class="text-sm text-muted-foreground leading-relaxed">
 								{milestone.description}
 							</p>

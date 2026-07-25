@@ -60,12 +60,13 @@ export const projects: Project[] = [
 			'A centralized digital repository for accessing and distributing academic publications across multiple publishing brands under PT Bukuloka Literasi Bangsa.',
 		detail:
 			'A centralized digital repository that brings together academic publications from multiple publishing brands under PT Bukuloka Literasi Bangsa. It enables lecturers, students, and researchers to search publications, preview PDF documents instantly, and generate citation references automatically for academic use.',
+		tags: ['svelte', 'typescript', 'tailwind'],
 		stackIcons: ['svelte', 'typescript', 'tailwind'],
 		image: '/projects/repository/cover.png',
 		images: [
 			'/projects/repository/cover.png'
 		],
-		environment: 'Live SIte',
+		environment: 'Live Site',
 		href: 'https://books.bukuloka.com/'
 	},
 	// {

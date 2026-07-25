@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { animate } from 'motion'; // Ambil mesin animasi murni
+    import { animate } from 'motion';
     import * as Card from '$lib/components/ui/card';
     import { Button } from '$lib/components/ui/button';
     import type { Profile } from './types';
@@ -13,43 +13,21 @@
         onNavigate: (id: string) => void;
     } = $props();
 
-    // Siapkan variabel penampung elemen HTML
     let titleEl: HTMLElement;
-    let marqueeEl: HTMLElement;
     let cardEl: HTMLElement;
     let buttonsEl: HTMLElement;
 
-    // Tabs & Typing states
     type TabKey = 'profile' | 'skills' | 'experience';
     let activeTab = $state<TabKey>('profile');
 
     const tabContents = $derived({
-        profile: `const developer = {
-  name: "${profile.name}",
-  role: "${profile.role}",
-  focus: "${profile.focus}",
-  location: "${profile.location}",
-  status: "Full-time Developer"
-};`,
-        skills: `{
-  "frontend": [
-    "SvelteKit", "TypeScript", 
-    "Tailwind CSS", "JavaScript"
-  ],
-  "backend": [
-    "Laravel", "Node.js", "MySQL"
-  ],
-  "tools": ["Git", "GitHub"]
-}`,
-        experience: `# Experience
-- Frontend Developer
-- Full-Stack (Laravel & MySQL)
-- Building interactive UIs
-- Active learning new stacks`
+        profile: `const developer = {\n  name: "${profile.name}",\n  role: "${profile.role}",\n  focus: "${profile.focus}",\n  location: "${profile.location}",\n  status: "Full-time Developer"\n};`,
+        skills: `{\n  "frontend": [\n    "SvelteKit", "TypeScript", \n    "Tailwind CSS", "JavaScript"\n  ],\n  "backend": [\n    "Laravel", "Node.js", "MySQL"\n  ],\n  "tools": ["Git", "GitHub"]\n}`,
+        experience: `# Experience\n- Frontend Developer\n- Full-Stack (Laravel & MySQL)\n- Building interactive UIs\n- Active learning new stacks`
     });
 
     let typedText = $state('');
-    let typingInterval: NodeJS.Timeout;
+    let typingInterval: ReturnType<typeof setInterval>;
 
     function highlight(text: string, tab: TabKey) {
         if (!text) return '';
@@ -60,12 +38,12 @@
             
         if (tab === 'profile') {
             return escaped
-                .replace(/(["'])(.*?)\1/g, '<span class="text-emerald-400">"$2"</span>')
+                .replace(/(['"])(.*?)\1/g, '<span class="text-emerald-400">"$2"</span>')
                 .replace(/\b(true|false|null|undefined|string|number|boolean)\b/g, '<span class="text-amber-400">$1</span>')
                 .replace(/\b(\w+)(?=\s*:)/g, '<span class="text-blue-400">$1</span>');
         } else if (tab === 'skills') {
             return escaped
-                .replace(/(["'])(.*?)\1/g, '<span class="text-emerald-400">"$2"</span>')
+                .replace(/(['"])(.*?)\1/g, '<span class="text-emerald-400">"$2"</span>')
                 .replace(/<span class="text-emerald-400">"([^"]+)"<\/span>\s*:/g, '<span class="text-blue-400">"$1"</span>:')
                 .replace(/([{}[\],])/g, '<span class="text-zinc-500">$1</span>');
         } else if (tab === 'experience') {
@@ -79,8 +57,6 @@
         clearInterval(typingInterval);
         typedText = '';
         let index = 0;
-        
-        // Atur kecepatan ketik (misal 30ms per karakter agar lebih natural)
         typingInterval = setInterval(() => {
             if (index < text.length) {
                 typedText += text[index];
@@ -96,36 +72,10 @@
         startTyping(tabContents[tab]);
     }
 
-    onMount(() => {                                                                                                                                             
-        // 1. Judul masuk duluan
-        animate(
-            titleEl,
-            { opacity: [0, 1], y: [20, 0] },
-            { duration: 0.6, ease: "easeOut" }
-        );
-
-        // 2. Marquee masuk di tengah
-        animate(
-            marqueeEl,
-            { opacity: [0, 1] },
-            { delay: 0.1, duration: 0.5, ease: "easeOut" }
-        );
-
-        // 3. Card masuk dengan sedikit delay
-        animate(
-            cardEl,
-            { opacity: [0, 1], y: [20, 0] },
-            { delay: 0.2, duration: 0.6, ease: "easeOut" }
-        );
-
-        // 4. Tombol masuk terakhir
-        animate(
-            buttonsEl,
-            { opacity: [0, 1], y: [15, 0] },
-            { delay: 0.4, duration: 0.5, ease: "easeOut" }
-        );
-
-        // Mulai ketik tab pertama kali load
+    onMount(() => {
+        animate(titleEl, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, ease: "easeOut" });
+        animate(cardEl, { opacity: [0, 1], y: [20, 0] }, { delay: 0.2, duration: 0.6, ease: "easeOut" });
+        animate(buttonsEl, { opacity: [0, 1], y: [15, 0] }, { delay: 0.4, duration: 0.5, ease: "easeOut" });
         startTyping(tabContents.profile);
 
         return () => {
@@ -143,7 +93,7 @@
 {/snippet}
 
 <section
-	id="about"
+    id="about"
     class="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-12 overflow-hidden"
 >
     <div
@@ -167,20 +117,13 @@
             </p>
         </div>
 
-
-        <!-- Code Mockup Editor -->
         <div bind:this={cardEl} style="opacity: 0; transform: translateY(20px)" class="w-full text-left">
             <div class="animate-float" style="animation-delay: 0.9s; animation-fill-mode: backwards;">
-                <!-- Animated Glowing Border Wrapper -->
                 <div class="gradient-border-wrapper shadow-[0_18px_60px_-36px_var(--primary)]">
                     <div class="gradient-border-glow"></div>
                     
-                    <Card.Root
-                        class="relative z-10 bg-card border-0 rounded-[15px] overflow-hidden py-0 gap-0"
-                    >
-                        <!-- VS Code Header Bar -->
+                    <Card.Root class="relative z-10 bg-card border-0 rounded-[15px] overflow-hidden py-0 gap-0">
                         <div class="flex items-center justify-between border-b border-border bg-muted/40 select-none">
-                            <!-- Window Dots & Tab Files -->
                             <div class="flex items-center">
                                 <div class="flex items-center gap-1.5 px-4 py-3">
                                     <span class="w-3 h-3 rounded-full bg-accent/70"></span>
@@ -188,34 +131,32 @@
                                     <span class="w-3 h-3 rounded-full bg-primary/70"></span>
                                 </div>
                                 
-                                <!-- Editor Tabs -->
-                                <div class="flex text-xs font-mono border-l border-border/50 h-full">
+                                <div class="flex text-xs font-mono border-l border-border/50 h-full overflow-x-auto scrollbar-none">
                                     <button 
                                         onclick={() => changeTab('profile')}
-                                        class="px-4 py-3 border-r border-border/50 flex items-center gap-1.5 transition-colors
+                                        class="px-3 sm:px-4 py-3 border-r border-border/50 flex items-center gap-1 sm:gap-1.5 transition-colors whitespace-nowrap shrink-0
                                             {activeTab === 'profile' ? 'bg-background text-foreground border-t-2 border-t-primary' : 'text-muted-foreground bg-muted/20 hover:bg-muted/40'}"
                                     >
-                                        <span class="text-blue-400">TS</span> profile.ts
+                                        <span class="text-blue-400">TS</span><span class="hidden sm:inline"> profile.ts</span>
                                     </button>
                                     <button 
                                         onclick={() => changeTab('skills')}
-                                        class="px-4 py-3 border-r border-border/50 flex items-center gap-1.5 transition-colors
+                                        class="px-3 sm:px-4 py-3 border-r border-border/50 flex items-center gap-1 sm:gap-1.5 transition-colors whitespace-nowrap shrink-0
                                             {activeTab === 'skills' ? 'bg-background text-foreground border-t-2 border-t-primary' : 'text-muted-foreground bg-muted/20 hover:bg-muted/40'}"
                                     >
-                                        <span class="text-yellow-500">&#123;&#125;</span> skills.json
+                                        <span class="text-yellow-500">&#123;&#125;</span><span class="hidden sm:inline"> skills.json</span>
                                     </button>
                                     <button 
                                         onclick={() => changeTab('experience')}
-                                        class="px-4 py-3 border-r border-border/50 flex items-center gap-1.5 transition-colors
+                                        class="px-3 sm:px-4 py-3 border-r border-border/50 flex items-center gap-1 sm:gap-1.5 transition-colors whitespace-nowrap shrink-0
                                             {activeTab === 'experience' ? 'bg-background text-foreground border-t-2 border-t-primary' : 'text-muted-foreground bg-muted/20 hover:bg-muted/40'}"
                                     >
-                                        <span class="text-primary">M↓</span> experience.md
+                                        <span class="text-primary">M↓</span><span class="hidden sm:inline"> experience.md</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Editor Text Area with dynamic typing -->
                         <Card.Content class="flex gap-4 p-6 font-mono text-xs sm:text-sm leading-loose min-h-45 sm:min-h-55 select-text">
                             {@render lineNumbers(typedText)}
                             <!-- eslint-disable-next-line svelte/no-at-html-tags -->

@@ -23,7 +23,6 @@
 					transition-all duration-500
 					hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_var(--primary)]"
 			>
-				<!-- Left: Project mockup image -->
 				<div class="relative flex items-center justify-center p-5 md:p-8 bg-muted/20 border-b md:border-b-0 md:border-r border-border/50 min-h-75 md:min-h-100">
 					{#if project.environment}
 						<div 
@@ -59,9 +58,7 @@
 					{/if}
 				</div>
 
-				<!-- Right: Project info -->
 				<div class="flex flex-col justify-between p-7 md:p-8 gap-6">
-					<!-- Header -->
 					<div class="space-y-1">
 						<span class="font-mono text-xs text-muted-foreground/50">0{i + 1}</span>
 						<h3 class="text-xl font-semibold tracking-tight text-foreground">
@@ -69,13 +66,11 @@
 						</h3>
 					</div>
 
-					<!-- Description -->
 					<p class="text-sm leading-relaxed text-muted-foreground line-clamp-3 overflow-hidden">
 						{project.description}
 					</p>
 
 					<div class="space-y-4">
-						<!-- Stack icons -->
 						<div class="space-y-1.5">
 							<p class="font-mono text-xs text-muted-foreground/50">// stack</p>
 							<img
@@ -86,7 +81,6 @@
 							/>
 						</div>
 
-						<!-- Tags + Modal trigger (Pojok Kanan Bawah) -->
 						<div class="flex items-end justify-between gap-3 pt-3 border-t border-border/50">
 							<div class="flex flex-wrap gap-1.5 max-w-[75%]">
 								{#each project.tags as tag (tag)}
