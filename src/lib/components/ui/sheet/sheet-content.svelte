@@ -8,7 +8,6 @@
 	import SheetPortal from "./sheet-portal.svelte";
 	import SheetOverlay from "./sheet-overlay.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
-	import XIcon from '@lucide/svelte/icons/x';
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
@@ -45,7 +44,9 @@
 			<SheetPrimitive.Close data-slot="sheet-close">
 				{#snippet child({ props })}
 					<Button variant="ghost" class="absolute top-4 right-4" size="icon-sm" {...props}>
-						<XIcon  />
+						<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+						</svg>
 						<span class="sr-only">Close</span>
 					</Button>
 				{/snippet}

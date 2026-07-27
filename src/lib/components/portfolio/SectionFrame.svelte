@@ -6,12 +6,14 @@
 		eyebrow,
 		title,
 		class: className = '',
+		titleClass = '',
 		children
 	}: {
 		id: string;
 		eyebrow: string;
 		title: string;
 		class?: string;
+		titleClass?: string;
 		children: Snippet;
 	} = $props();
 
@@ -36,7 +38,7 @@
 <section {id} class="max-w-5xl mx-auto px-4 py-15 scroll-mt-16 {className}">
 	<div use:reveal class="reveal">
 		<p class="font-mono text-xs text-secondary mb-3">// {eyebrow}</p>
-		<h2 class="font-display text-3xl font-semibold mb-8">{title}</h2>
+		<h2 class="font-display text-3xl font-semibold mb-8 {titleClass}">{title}</h2>
 		{@render children()}
 	</div>
 </section>

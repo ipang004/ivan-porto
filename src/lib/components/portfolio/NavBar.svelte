@@ -2,7 +2,6 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Separator } from '$lib/components/ui/separator';
 	import * as Sheet from '$lib/components/ui/sheet';
-	import Menu from '@lucide/svelte/icons/menu';
 	import type { NavItem, Profile } from './types';
 
 	let {
@@ -32,7 +31,7 @@
 		<Separator orientation="vertical" class="h-5 mx-3 hidden sm:block" />
 
 		<div class="hidden sm:flex items-center gap-1">
-			{#each items as item (item.id)}
+			{#each items as item}
 				<button
 					onclick={() => navigateTo(item.id)}
 					class="font-mono text-xs px-3 py-1.5 rounded-t-md border-b-2 transition-colors
@@ -50,7 +49,9 @@
 				<Sheet.Trigger>
 					{#snippet child({ props }: { props: Record<string, unknown> })}
 						<Button {...props} variant="ghost" size="icon" class="text-muted-foreground">
-							<Menu class="size-5" />
+							<svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+							</svg>
 						</Button>
 					{/snippet}
 				</Sheet.Trigger>
@@ -59,7 +60,7 @@
 						<Sheet.Title class="font-display">Navigasi</Sheet.Title>
 					</Sheet.Header>
 					<div class="flex flex-col gap-1 px-4">
-						{#each items as item (item.id)}
+						{#each items as item}
 							<button
 								onclick={() => navigateTo(item.id)}
 								class="font-mono text-sm text-left px-3 py-2 rounded-md transition-colors
