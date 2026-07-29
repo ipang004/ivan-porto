@@ -4,24 +4,17 @@
 </script>
 
 <footer class="relative border-t border-border/40 bg-card/50 overflow-hidden">
-    <!-- Top border sweep animation -->
+
     <div class="sweep-line absolute top-0 inset-x-0 h-px pointer-events-none"></div>
 
-    <!-- Left corner glow pulse -->
     <div class="corner-glow-left absolute left-0 top-0 w-32 h-full pointer-events-none"
          style="background: linear-gradient(to right, oklch(0.703 0.164 287.4 / 0.15), transparent);">
     </div>
 
-    <!-- Right corner glow pulse -->
     <div class="corner-glow-right absolute right-0 top-0 w-32 h-full pointer-events-none"
          style="background: linear-gradient(to left, oklch(0.786 0.114 186.6 / 0.15), transparent);">
     </div>
 
-    <!-- Corner brackets -->
-    <span class="absolute top-2.5 left-3 font-mono text-[10px] text-primary/40 select-none">┌</span>
-    <span class="absolute top-2.5 right-3 font-mono text-[10px] text-primary/40 select-none">┐</span>
-    <span class="absolute bottom-2.5 left-3 font-mono text-[10px] text-primary/40 select-none">└</span>
-    <span class="absolute bottom-2.5 right-3 font-mono text-[10px] text-primary/40 select-none">┘</span>
 
     <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex flex-col items-center sm:items-start gap-0.5">
