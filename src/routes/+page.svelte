@@ -10,6 +10,7 @@
 	import JourneySection from '$lib/components/portfolio/JourneySection.svelte';
 	import { navItems, profile, projects, credentials } from '$lib/components/portfolio/site-data';
 	import type { Credential, Project } from '$lib/components/portfolio/types';
+	import Footer from '$lib/components/portfolio/Footer.svelte';
 
 	let activeSection = $state('about');
 	let glowEl = $state<HTMLElement | null>(null);
@@ -74,7 +75,7 @@
 	<meta property="og:description" content="Turning ideas into web applications using {profile.focus}." />
 </svelte:head>
 
-<main class="dark min-h-screen bg-background bg-dots text-foreground font-body relative overflow-hidden">
+<main class="min-h-screen bg-dots text-foreground font-body relative overflow-hidden">
 	<div
 		bind:this={glowEl}
 		class="pointer-events-none fixed inset-0 z-0 opacity-15 transition-opacity"
@@ -196,3 +197,4 @@
 		</div>
 	{/if}
 </main>
+<Footer />
