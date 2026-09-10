@@ -13,7 +13,6 @@
 	import Footer from '$lib/components/portfolio/Footer.svelte';
 
 	let activeSection = $state('about');
-	let glowEl = $state<HTMLElement | null>(null);
 	let selectedProject = $state<Project | null>(null);
 	let modalOpen = $state(false);
 	let selectedCredential = $state<Credential | null>(null);
@@ -35,15 +34,6 @@
 	}
 
 	$effect(() => {
-		const handleMouseMove = (e: MouseEvent) => {
-			if (glowEl) {
-				glowEl.style.setProperty('--mouse-x', `${e.clientX}px`);
-				glowEl.style.setProperty('--mouse-y', `${e.clientY}px`);
-			}
-		};
-
-		window.addEventListener('mousemove', handleMouseMove);
-
 		const sections = navItems
 			.map((item) => document.getElementById(item.id))
 			.filter((section): section is HTMLElement => section !== null);
@@ -62,29 +52,22 @@
 		sections.forEach((section) => observer.observe(section));
 
 		return () => {
-			window.removeEventListener('mousemove', handleMouseMove);
 			observer.disconnect();
 		};
 	});
 </script>
 
 <svelte:head>
-	<title>{profile.name} | {profile.role}</title>
+	<title>{profile.name} — {profile.role}</title>
 	<meta name="description" content="Personal portfolio of {profile.name}, a {profile.role} specializing in {profile.focus}." />
-	<meta property="og:title" content="{profile.name} | Portofolio" />
-	<meta property="og:description" content="Turning ideas into web applications using {profile.focus}." />
+	<meta property="og:title" content="{profile.name} — {profile.role}" />
+	<meta property="og:description" content="Crafting thoughtful web interfaces using {profile.focus}." />
 </svelte:head>
 
-<main class="min-h-screen bg-dots text-foreground font-body relative overflow-hidden">
-	<div
-		bind:this={glowEl}
-		class="pointer-events-none fixed inset-0 z-0 opacity-15 transition-opacity"
-		style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), var(--primary), transparent 80%);"
-	></div>
-
+<main class="min-h-screen bg-background text-foreground relative overflow-hidden bg-studio-grid">
 	<NavBar {activeSection} items={navItems} {profile} onNavigate={scrollTo} />
 
-	<div class="relative max-w-5xl mx-auto border-x border-border/20 z-10 bg-background/20 backdrop-blur-[1px]">
+	<div class="relative max-w-6xl mx-auto border-x border-border/40 z-10 bg-background/40">
 		<HeroSection {profile} onNavigate={scrollTo} />
 
 		<div class="border-t border-border/20 relative">
