@@ -63,18 +63,18 @@
 		<div
 			transition:scale={{ duration: 200, start: 0.95 }}
 			class="relative w-full max-w-4xl rounded-2xl overflow-hidden
-				bg-card border border-border shadow-2xl shadow-black/60"
+				bg-white border-4 border-black shadow-[10px_10px_0px_0px_#18181b]"
 		>
 			<div class="overflow-y-auto max-h-[90vh]">
 				<button
 					onclick={close}
-					class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-muted/80 hover:bg-muted
-						border border-border/50 flex items-center justify-center
-						text-muted-foreground hover:text-foreground transition-colors"
+					class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-amber-400 hover:bg-amber-300
+						border-2 border-black flex items-center justify-center
+						text-black font-black shadow-[2px_2px_0px_0px_#18181b] transition-transform hover:scale-105 cursor-pointer"
 					aria-label="Tutup modal"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 					</svg>
 				</button>
 
@@ -148,19 +148,19 @@
 
 				<div class="p-6 md:p-8 space-y-6">
 					<div>
-						<p class="font-mono text-xs text-secondary mb-1">// project</p>
-						<h2 class="text-2xl font-semibold tracking-tight text-foreground">{project.name}</h2>
+						<p class="font-mono text-xs text-muted-foreground mb-1">[ DOSSIER // PROJECT ARCHIVE ]</p>
+						<h2 class="text-2xl font-bold tracking-tight text-foreground">{project.name}</h2>
 					</div>
 
 					<div class="space-y-2">
-						<p class="font-mono text-xs text-muted-foreground/50">// about</p>
+						<p class="font-mono text-xs text-muted-foreground">// SYNOPSIS & ARCHITECTURE</p>
 						<p class="text-sm leading-relaxed text-muted-foreground">
 							{project.detail ?? project.description}
 						</p>
 					</div>
 
 					<div class="space-y-2">
-						<p class="font-mono text-xs text-muted-foreground/50">// stack</p>
+						<p class="font-mono text-xs font-bold text-sky-400">// TECH ARSENAL</p>
 						<img
 							src={getStackIconUrl(project.stackIcons)}
 							alt="Tech stack: {project.stackIcons.join(', ')}"
@@ -169,20 +169,20 @@
 						/>
 					</div>
 
-					<div class="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-border/50">
+					<div class="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-border">
 						<div class="flex flex-wrap gap-1.5">
 							{#each project.tags as tag (tag)}
-								<span class="font-mono text-[11px] text-zinc-400 bg-zinc-900/50 border border-zinc-800/80 px-2.5 py-1 rounded-md hover:border-primary/30 hover:bg-primary/5 hover:text-foreground transition-all duration-300 select-none">
-									<span class="text-primary/60 font-medium">#</span>{tag.toLowerCase()}
+								<span class="font-mono text-[11px] text-foreground/80 bg-muted/40 border border-border px-2.5 py-1 rounded hover:border-amber-400 hover:text-amber-400 transition-all duration-200 select-none">
+									#{tag.toLowerCase()}
 								</span>
 							{/each}
 						</div>
 						{#if project.href && project.href !== '#'}
-							<Button href={project.href} target="_blank" class="rounded-full px-5">
-								Buka Project →
+							<Button href={project.href} target="_blank" class="rounded-xl px-6 py-5 font-bold bg-amber-400 text-black hover:bg-amber-300 transition-all border-2 border-black shadow-[3px_3px_0px_0px_#38bdf8]">
+								Launch Project →
 							</Button>
 						{:else}
-							<span class="font-mono text-xs text-muted-foreground/40 italic">link coming soon</span>
+							<span class="font-mono text-xs text-muted-foreground/60 italic">// link coming soon</span>
 						{/if}
 					</div>
 				</div>

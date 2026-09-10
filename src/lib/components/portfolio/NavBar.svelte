@@ -24,25 +24,35 @@
 	}
 </script>
 
-<nav class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
-	<div class="max-w-4xl mx-auto flex items-center h-12 px-4 gap-1">
-		<span class="font-mono text-xs text-secondary shrink-0">~/{profile.name.toLowerCase().replace(/\s+/g, '-')}</span>
+<header class="sticky top-0 inset-x-0 z-50 select-none">
+	<!-- Top Vintage Comic Strip Header Bar -->
+	<div class="w-full bg-amber-400 border-b-2 border-black py-1 px-4 text-center font-mono text-[10px] sm:text-xs font-black text-black tracking-widest uppercase flex items-center justify-between relative overflow-hidden shadow-sm">
+		<span class="hidden md:inline">★ THE AMAZING IVAN MALDINI CHRONICLES ★</span>
+		<span>ISSUE #01 // COLLECTOR'S EDITION</span>
+		<span class="hidden sm:inline">PRICE: 25¢ // APPROVED BY COMICS CODE</span>
+	</div>
 
-		<Separator orientation="vertical" class="h-5 mx-3 hidden sm:block" />
+	<nav class="border-b-2 border-black bg-[#160808]/92 backdrop-blur-md shadow-md">
+		<div class="max-w-5xl mx-auto flex items-center h-12 px-4 gap-1">
+			<span class="font-mono text-xs font-black text-white shrink-0 tracking-wider">
+				[ VOL.01 // <span class="text-amber-400">IVAN.DEV</span> ]
+			</span>
 
-		<div class="hidden sm:flex items-center gap-1">
-			{#each items as item}
-				<button
-					onclick={() => navigateTo(item.id)}
-					class="font-mono text-xs px-3 py-1.5 rounded-t-md border-b-2 transition-colors
-						{activeSection === item.id
-						? 'border-primary text-foreground bg-card'
-						: 'border-transparent text-muted-foreground hover:text-foreground'}"
-				>
-					{item.label}
-				</button>
-			{/each}
-		</div>
+			<Separator orientation="vertical" class="h-5 mx-3 hidden sm:block bg-white/20" />
+
+			<div class="hidden sm:flex items-center gap-1.5">
+				{#each items as item, i}
+					<button
+						onclick={() => navigateTo(item.id)}
+						class="font-mono text-xs px-3 py-1 rounded-md border-2 transition-all cursor-pointer
+							{activeSection === item.id
+							? 'border-black text-black font-black bg-amber-400 shadow-[2px_2px_0px_0px_#000]'
+							: 'border-transparent text-white/80 hover:text-white font-bold hover:bg-white/10'}"
+					>
+						0{i + 1}. {item.label}
+					</button>
+				{/each}
+			</div>
 
 		<div class="sm:hidden ml-auto">
 			<Sheet.Root bind:open={sheetOpen}>
@@ -77,3 +87,4 @@
 		</div>
 	</div>
 </nav>
+</header>

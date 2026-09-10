@@ -6,6 +6,8 @@
 </script>
 
 <svelte:head><link rel="icon" type="image/png" href={favicon} /></svelte:head>
- <div class="dark bg-background min-h-screen">
+<div class="dark min-h-screen text-foreground relative">
+	<!-- Fixed Sticky Comic Wallpaper Background -->
+	<div class="bg-comic-wallpaper" aria-hidden="true"></div>
 	{@render children()}
 </div>

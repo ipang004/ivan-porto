@@ -69,174 +69,216 @@
 		const ctx = cardCanvas.getContext('2d')!;
 
 		function renderBadgeTexture(avatarImg?: HTMLImageElement) {
-			ctx.fillStyle = '#090a0d';
+			ctx.fillStyle = '#faf6ed';
 			ctx.fillRect(0, 0, texW, texH);
 
 			const frontW = 688;
 			const maxH = 1042;
 
+			// Helper to draw Ben-Day halftone dots on canvas
+			function drawHalftoneDots(startX: number, startY: number, w: number, h: number, spacing: number, radius: number, dotColor: string) {
+				ctx.fillStyle = dotColor;
+				for (let y = startY; y < startY + h; y += spacing) {
+					for (let x = startX; x < startX + w; x += spacing) {
+						ctx.beginPath();
+						ctx.arc(x, y, radius, 0, Math.PI * 2);
+						ctx.fill();
+					}
+				}
+			}
+
 			// ==========================================
-			// 1. FRONT FACE (Clean layout with empty slot area)
+			// 1. FRONT FACE (Retro Pop-Art Comic Pass)
 			// ==========================================
-			const fGrad = ctx.createLinearGradient(0, 0, 0, maxH);
-			fGrad.addColorStop(0, '#14161d');
-			fGrad.addColorStop(0.35, '#0c0e13');
-			fGrad.addColorStop(1, '#060709');
-			ctx.fillStyle = fGrad;
+			// Warm comic collector cardstock
+			ctx.fillStyle = '#fffdf9';
 			ctx.fillRect(0, 0, frontW, maxH);
 
-			// Outer hairline border
-			ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-			ctx.lineWidth = 10;
+			// Ben-Day halftone dot screen in background
+			drawHalftoneDots(20, 20, frontW - 40, maxH - 40, 16, 1.4, 'rgba(24, 24, 27, 0.08)');
+
+			// Outer comic panel border (bold ink line)
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 6;
 			ctx.strokeRect(20, 20, frontW - 40, maxH - 40);
 
-			// NOTE: The top 0..150px is where the metal clip clamps through the slot!
-			// We leave the slot area clean so the clip does NOT cover any text!
+			// Inner hairline frame
+			ctx.strokeStyle = 'rgba(24, 24, 27, 0.2)';
+			ctx.lineWidth = 1.5;
+			ctx.strokeRect(30, 30, frontW - 60, maxH - 60);
 
-			// Holographic security foil strip (below clip)
-			const holoGrad = ctx.createLinearGradient(30, 160, frontW - 30, 172);
-			holoGrad.addColorStop(0, 'rgba(160, 200, 255, 0.4)');
-			holoGrad.addColorStop(0.3, 'rgba(255, 210, 160, 0.45)');
-			holoGrad.addColorStop(0.7, 'rgba(170, 255, 210, 0.45)');
-			holoGrad.addColorStop(1, 'rgba(210, 170, 255, 0.4)');
-			ctx.fillStyle = holoGrad;
-			ctx.fillRect(30, 160, frontW - 60, 12);
+			// Header Comic Strip Banner (Vibrant Comic Yellow)
+			ctx.fillStyle = '#fbbf24';
+			ctx.fillRect(32, 140, frontW - 64, 52);
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 3;
+			ctx.strokeRect(32, 140, frontW - 64, 52);
 
-			// Header branding text (BELOW THE CLIP!)
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
-			ctx.font = '700 20px monospace';
+			// Header branding text
+			ctx.fillStyle = '#18181b';
+			ctx.font = '900 18px monospace';
 			ctx.textAlign = 'center';
-			ctx.fillText('IDENTITY PASS // 2026', frontW / 2, 205);
+			ctx.fillText('★ HERO PASS // ISSUE NO. 01 ★', frontW / 2, 173);
 
-			// Avatar container box
+			// Avatar container box (comic character panel)
 			const avatarSize = 370;
 			const avatarX = (frontW - avatarSize) / 2;
-			const avatarY = 225;
+			const avatarY = 210;
 
-			ctx.fillStyle = '#060709';
+			ctx.fillStyle = '#f4f4f5';
 			ctx.fillRect(avatarX, avatarY, avatarSize, avatarSize);
 
 			if (avatarImg) {
 				ctx.save();
 				ctx.beginPath();
-				ctx.roundRect(avatarX, avatarY, avatarSize, avatarSize, 24);
+				ctx.roundRect(avatarX, avatarY, avatarSize, avatarSize, 8);
 				ctx.clip();
+				
+				// FULL NATURAL COLOR PHOTO — Vibrant & crisp!
 				ctx.drawImage(avatarImg, avatarX, avatarY, avatarSize, avatarSize);
 				ctx.restore();
 			} else {
-				ctx.fillStyle = '#1c1f26';
+				ctx.fillStyle = '#e4e4e7';
 				ctx.fillRect(avatarX, avatarY, avatarSize, avatarSize);
 			}
 
-			// Avatar frame border
-			ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
-			ctx.lineWidth = 5;
+			// Inked portrait frame with solid black border & offset comic drop
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 4;
 			ctx.strokeRect(avatarX, avatarY, avatarSize, avatarSize);
 
-			// Active status pill overlay on photo
-			ctx.fillStyle = 'rgba(9, 11, 15, 0.92)';
-			ctx.beginPath();
-			ctx.roundRect(avatarX + 20, avatarY + avatarSize - 52, 176, 38, 10);
-			ctx.fill();
+			// Comic Corner Accents
+			ctx.fillStyle = '#f43f5e';
+			ctx.fillRect(avatarX - 2, avatarY - 2, 16, 6);
+			ctx.fillRect(avatarX - 2, avatarY - 2, 6, 16);
+			ctx.fillStyle = '#0284c7';
+			ctx.fillRect(avatarX + avatarSize - 14, avatarY - 2, 16, 6);
+			ctx.fillRect(avatarX + avatarSize - 4, avatarY - 2, 6, 16);
+
+			// Active status badge (comic pop pill)
+			ctx.fillStyle = '#18181b';
+			ctx.fillRect(avatarX + 16, avatarY + avatarSize - 44, 200, 32);
 			ctx.fillStyle = '#10b981';
+			ctx.fillRect(avatarX + 14, avatarY + avatarSize - 46, 200, 32);
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 2;
+			ctx.strokeRect(avatarX + 14, avatarY + avatarSize - 46, 200, 32);
+
+			ctx.fillStyle = '#ffffff';
 			ctx.beginPath();
-			ctx.arc(avatarX + 38, avatarY + avatarSize - 33, 6, 0, Math.PI * 2);
+			ctx.arc(avatarX + 30, avatarY + avatarSize - 30, 5, 0, Math.PI * 2);
 			ctx.fill();
+
 			ctx.fillStyle = '#ffffff';
-			ctx.font = '700 16px monospace';
+			ctx.font = '900 12px monospace';
 			ctx.textAlign = 'left';
-			ctx.fillText('ACTIVE · ID', avatarX + 54, avatarY + avatarSize - 27);
+			ctx.fillText('ACTIVE · LEVEL 99 DEV', avatarX + 44, avatarY + avatarSize - 26);
 
-			// Name & Title
-			ctx.fillStyle = '#ffffff';
-			ctx.font = '800 52px sans-serif';
+			// Name & Title (Comic Pop Typography)
+			ctx.fillStyle = '#18181b';
+			ctx.font = '900 52px sans-serif';
 			ctx.textAlign = 'center';
-			ctx.fillText('IVAN MALDINI', frontW / 2, 660);
+			ctx.fillText('IVAN MALDINI', frontW / 2, 646);
 
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
-			ctx.font = '600 22px monospace';
-			ctx.fillText('FRONTEND DEVELOPER', frontW / 2, 702);
+			ctx.fillStyle = '#0284c7';
+			ctx.font = '800 20px monospace';
+			ctx.fillText('★ FRONTEND ARCHITECT ★', frontW / 2, 684);
 
-			// Metadata divider
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
-			ctx.fillRect(50, 735, frontW - 100, 2);
+			// Comic divider line
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 2.5;
+			ctx.beginPath();
+			ctx.moveTo(50, 712); ctx.lineTo(frontW - 50, 712);
+			ctx.stroke();
 
 			// Metadata items
-			const metaY = 785;
+			const metaY = 756;
 			ctx.textAlign = 'left';
-			ctx.font = '600 16px monospace';
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-			ctx.fillText('AFFILIATION', 60, metaY);
-			ctx.fillText('CORE FOCUS', 380, metaY);
+			ctx.font = '900 13px monospace';
+			ctx.fillStyle = '#f59e0b';
+			ctx.fillText('// AFFILIATION', 55, metaY);
+			ctx.fillText('// CORE ARSENAL', 380, metaY);
 
-			ctx.font = '700 22px sans-serif';
-			ctx.fillStyle = '#f0f2f5';
-			ctx.fillText('PT Yapindo Jaya Abadi', 60, metaY + 34);
-			ctx.fillText('SvelteKit & TS', 380, metaY + 34);
+			ctx.font = '800 20px sans-serif';
+			ctx.fillStyle = '#18181b';
+			ctx.fillText('PT Yapindo Jaya Abadi', 55, metaY + 26);
+			ctx.fillText('SvelteKit & TS', 380, metaY + 26);
 
 			// Barcode divider
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
-			ctx.fillRect(50, 868, frontW - 100, 2);
+			ctx.strokeStyle = 'rgba(24, 24, 27, 0.2)';
+			ctx.lineWidth = 1.5;
+			ctx.beginPath();
+			ctx.moveTo(50, 836); ctx.lineTo(frontW - 50, 836);
+			ctx.stroke();
 
-			// Barcode graphic
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-			const barWidths = [4, 10, 5, 14, 4, 8, 12, 4, 16, 5, 8, 4, 12, 6, 4, 14, 5, 10, 4, 16, 5, 8, 12, 4, 8];
-			let curX = 80;
-			for (let i = 0; i < 32; i++) {
+			// Comic barcode (solid black ink)
+			ctx.fillStyle = '#18181b';
+			const barWidths = [4, 9, 5, 13, 4, 8, 12, 4, 15, 5, 8, 4, 12, 6, 4, 14, 5, 10, 4, 15, 5, 8, 12, 4, 8, 11, 4];
+			let curX = 65;
+			for (let i = 0; i < 34; i++) {
 				const bw = barWidths[i % barWidths.length];
-				ctx.fillRect(curX, 895, bw, 62);
+				ctx.fillRect(curX, 860, bw, 60);
 				curX += bw + 6;
-				if (curX > frontW - 80) break;
+				if (curX > frontW - 65) break;
 			}
 
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-			ctx.font = '500 16px monospace';
+			ctx.fillStyle = '#18181b';
+			ctx.font = '800 13px monospace';
 			ctx.textAlign = 'center';
-			ctx.fillText('UUID // 7702-0941-DEV-ID-2026', frontW / 2, 995);
+			ctx.fillText('SERIAL // 004-IVAN-COMIC-COLLECTOR-2026', frontW / 2, 960);
 
 			// ==========================================
-			// 2. BACK FACE
+			// 2. BACK FACE (Vintage Comic Cover Seal)
 			// ==========================================
 			const backX = frontW;
-			const bGrad = ctx.createLinearGradient(backX, 0, backX, maxH);
-			bGrad.addColorStop(0, '#12141a');
-			bGrad.addColorStop(0.5, '#08090d');
-			bGrad.addColorStop(1, '#040507');
-			ctx.fillStyle = bGrad;
+			ctx.fillStyle = '#fef08a'; // Comic Yellow Back Face!
 			ctx.fillRect(backX, 0, frontW, maxH);
 
-			ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-			ctx.lineWidth = 10;
+			drawHalftoneDots(backX + 20, 20, frontW - 40, maxH - 40, 14, 1.4, 'rgba(24, 24, 27, 0.12)');
+
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 6;
 			ctx.strokeRect(backX + 20, 20, frontW - 40, maxH - 40);
 
-			// Monogram Box on back
-			const logoSize = 160;
+			// Comic Emblem Stamp on back
+			const logoSize = 180;
 			const logoX = backX + (frontW - logoSize) / 2;
-			const logoY = 350;
+			const logoY = 300;
 
-			ctx.fillStyle = '#060709';
+			ctx.fillStyle = '#ffffff';
 			ctx.fillRect(logoX, logoY, logoSize, logoSize);
-			ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+			ctx.strokeStyle = '#18181b';
 			ctx.lineWidth = 4;
 			ctx.strokeRect(logoX, logoY, logoSize, logoSize);
 
-			ctx.fillStyle = '#ffffff';
-			ctx.font = '800 76px sans-serif';
+			ctx.fillStyle = '#f43f5e';
+			ctx.font = '900 84px sans-serif';
 			ctx.textAlign = 'center';
-			ctx.fillText('IM', backX + frontW / 2, logoY + 110);
+			ctx.fillText('IM', backX + frontW / 2, logoY + 120);
 
-			ctx.fillStyle = '#ffffff';
-			ctx.font = '700 32px sans-serif';
-			ctx.fillText('IVAN MALDINI', backX + frontW / 2, 575);
+			ctx.fillStyle = '#18181b';
+			ctx.font = '900 34px sans-serif';
+			ctx.fillText('IVAN MALDINI', backX + frontW / 2, 545);
 
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
-			ctx.font = '600 20px monospace';
-			ctx.fillText('PORTFOLIO · ALL ACCESS', backX + frontW / 2, 620);
-			ctx.fillText('github.com/ipang004', backX + frontW / 2, 660);
+			// Stamp Badge
+			ctx.fillStyle = '#0284c7';
+			ctx.font = '900 18px monospace';
+			ctx.fillText('★ COMICS CODE APPROVED ★', backX + frontW / 2, 590);
 
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
-			ctx.font = '500 16px monospace';
-			ctx.fillText('SVELTEKIT · TYPESCRIPT · THREE.JS', backX + frontW / 2, 985);
+			ctx.fillStyle = '#18181b';
+			ctx.font = '800 16px monospace';
+			ctx.fillText('GITHUB.COM/IPANG004', backX + frontW / 2, 630);
+
+			ctx.strokeStyle = '#18181b';
+			ctx.lineWidth = 2;
+			ctx.beginPath();
+			ctx.moveTo(backX + 80, 665); ctx.lineTo(backX + frontW - 80, 665);
+			ctx.stroke();
+
+			ctx.fillStyle = '#57534e';
+			ctx.font = '700 15px monospace';
+			ctx.fillText('SVELTEKIT · TYPESCRIPT · THREE.JS', backX + frontW / 2, 705);
+			ctx.fillText('SERIALIZED IN JAKARTA, ID // 2026', backX + frontW / 2, 735);
 		}
 
 		renderBadgeTexture();
@@ -262,6 +304,7 @@
 		gltfLoader.load('/models/card.glb', (gltf) => {
 			const model = gltf.scene;
 			let clipMesh: THREE.Object3D | null = null;
+			let cardMesh: THREE.Mesh | null = null;
 
 			model.traverse((child) => {
 				if ((child as THREE.Mesh).isMesh) {
@@ -270,13 +313,14 @@
 					mesh.receiveShadow = true;
 
 					if (mesh.name === 'card') {
+						cardMesh = mesh;
 						mesh.material = new THREE.MeshPhysicalMaterial({
 							map: cardTexture,
-							roughness: 0.15,
+							roughness: 0.2,
 							metalness: 0.05,
-							clearcoat: 1.0,
-							clearcoatRoughness: 0.08,
-							reflectivity: 0.85
+							clearcoat: 0.7,
+							clearcoatRoughness: 0.1,
+							reflectivity: 0.75
 						});
 					} else if (mesh.name === 'clip' || mesh.name === 'clamp') {
 						mesh.material = new THREE.MeshStandardMaterial({
@@ -293,7 +337,175 @@
 				}
 			});
 
-			model.scale.set(modelScale, modelScale, modelScale);
+			// --- Procedural 3D Crystal Clear Transparent Acrylic Badge Holder Case ---
+			if (cardMesh) {
+				const cardGeo = (cardMesh as THREE.Mesh).geometry;
+				cardGeo.computeBoundingBox();
+				const cardBox = cardGeo.boundingBox!;
+				const cw = cardBox.max.x - cardBox.min.x;
+				const ch = cardBox.max.y - cardBox.min.y;
+				const cd = Math.max(cardBox.max.z - cardBox.min.z, 0.02);
+				const cc = cardBox.getCenter(new THREE.Vector3());
+
+				// Holder Case dimensions (slim, snug, natural fit around card)
+				const caseW = cw + 0.06;
+				const caseH = ch + 0.06;
+				const cornerR = 0.04;
+
+				// Premium Crystal Clear Polycarbonate / Acrylic Material
+				const clearCaseMat = new THREE.MeshPhysicalMaterial({
+					color: 0xffffff,
+					transparent: true,
+					opacity: 0.6,
+					roughness: 0.05,
+					metalness: 0.05,
+					clearcoat: 1.0,
+					clearcoatRoughness: 0.03,
+					transmission: 0.95, // 100% see-through clear acrylic plastic
+					ior: 1.49,          // Refractive index of acrylic / PMMA
+					thickness: 0.03,
+					reflectivity: 0.95,
+					envMap: envMap,
+					depthWrite: false
+				});
+
+				// 1. Front Slim Clear Bezel Frame with Window Opening
+				const frameShape = new THREE.Shape();
+				const fx0 = -caseW / 2;
+				const fy0 = -caseH / 2;
+
+				frameShape.moveTo(fx0 + cornerR, fy0);
+				frameShape.lineTo(fx0 + caseW - cornerR, fy0);
+				frameShape.quadraticCurveTo(fx0 + caseW, fy0, fx0 + caseW, fy0 + cornerR);
+				frameShape.lineTo(fx0 + caseW, fy0 + caseH - cornerR);
+				frameShape.quadraticCurveTo(fx0 + caseW, fy0 + caseH, fx0 + caseW - cornerR, fy0 + caseH);
+				frameShape.lineTo(fx0 + cornerR, fy0 + caseH);
+				frameShape.quadraticCurveTo(fx0, fy0 + caseH, fx0, fy0 + caseH - cornerR);
+				frameShape.lineTo(fx0, fy0 + cornerR);
+				frameShape.quadraticCurveTo(fx0, fy0, fx0 + cornerR, fy0);
+
+				// Window cutout hole (snug fit)
+				const winW = cw * 0.97;
+				const winH = ch * 0.97;
+				const winR = 0.03;
+				const wx0 = -winW / 2;
+				const wy0 = -winH / 2;
+
+				const winHole = new THREE.Path();
+				winHole.moveTo(wx0 + winR, wy0);
+				winHole.lineTo(wx0 + winW - winR, wy0);
+				winHole.quadraticCurveTo(wx0 + winW, wy0, wx0 + winW, winR + wy0);
+				winHole.lineTo(wx0 + winW, wy0 + winH - winR);
+				winHole.quadraticCurveTo(wx0 + winW, wy0 + winH, wx0 + winW - winR, wy0 + winH);
+				winHole.lineTo(wx0 + winR, wy0 + winH);
+				winHole.quadraticCurveTo(wx0, wy0 + winH, wx0, wy0 + winH - winR);
+				winHole.lineTo(wx0, wy0 + winR);
+				winHole.quadraticCurveTo(wx0, wy0, wx0 + winR, wy0);
+				frameShape.holes.push(winHole);
+
+				const frameGeo = new THREE.ExtrudeGeometry(frameShape, {
+					depth: 0.008,
+					bevelEnabled: true,
+					bevelSegments: 2,
+					steps: 1,
+					bevelSize: 0.004,
+					bevelThickness: 0.004
+				});
+
+				const frontFrameMesh = new THREE.Mesh(frameGeo, clearCaseMat);
+				frontFrameMesh.position.set(cc.x, cc.y, cc.z + cd / 2 + 0.003);
+				frontFrameMesh.castShadow = true;
+				frontFrameMesh.receiveShadow = true;
+				cardMesh.add(frontFrameMesh);
+
+				// 2. Crystal Clear Acrylic Protective Front Glass Sheet
+				const glassGeo = new THREE.PlaneGeometry(winW, winH);
+				const glassMesh = new THREE.Mesh(glassGeo, clearCaseMat);
+				glassMesh.position.set(cc.x, cc.y, cc.z + cd / 2 + 0.002);
+				cardMesh.add(glassMesh);
+
+				// 3. Clear Back Casing Plate with Classic Teardrop Thumb Hole (like in photo)
+				const backShape = new THREE.Shape();
+				backShape.moveTo(fx0 + cornerR, fy0);
+				backShape.lineTo(fx0 + caseW - cornerR, fy0);
+				backShape.quadraticCurveTo(fx0 + caseW, fy0, fx0 + caseW, fy0 + cornerR);
+				backShape.lineTo(fx0 + caseW, fy0 + caseH - cornerR);
+				backShape.quadraticCurveTo(fx0 + caseW, fy0 + caseH, fx0 + caseW - cornerR, fy0 + caseH);
+				backShape.lineTo(fx0 + cornerR, fy0 + caseH);
+				backShape.quadraticCurveTo(fx0, fy0 + caseH, fx0, fy0 + caseH - cornerR);
+				backShape.lineTo(fx0, fy0 + cornerR);
+				backShape.quadraticCurveTo(fx0, fy0, fx0 + cornerR, fy0);
+
+				// Inverted teardrop thumb hole in center of back plate
+				const tearW = cw * 0.28;
+				const tearH = ch * 0.32;
+				const tearY = -0.1;
+				const tearHole = new THREE.Path();
+				tearHole.moveTo(-tearW / 2, tearY + tearH * 0.3);
+				tearHole.lineTo(-tearW * 0.35, tearY + tearH);
+				tearHole.quadraticCurveTo(0, tearY + tearH + 0.04, tearW * 0.35, tearY + tearH);
+				tearHole.lineTo(tearW / 2, tearY + tearH * 0.3);
+				tearHole.quadraticCurveTo(tearW / 2, tearY, 0, tearY);
+				tearHole.quadraticCurveTo(-tearW / 2, tearY, -tearW / 2, tearY + tearH * 0.3);
+				backShape.holes.push(tearHole);
+
+				const backGeo = new THREE.ExtrudeGeometry(backShape, {
+					depth: 0.008,
+					bevelEnabled: true,
+					bevelSegments: 2,
+					steps: 1,
+					bevelSize: 0.003,
+					bevelThickness: 0.003
+				});
+
+				const backMesh = new THREE.Mesh(backGeo, clearCaseMat);
+				backMesh.position.set(cc.x, cc.y, cc.z - cd / 2 - 0.012);
+				backMesh.castShadow = true;
+				backMesh.receiveShadow = true;
+				cardMesh.add(backMesh);
+
+				// 4. Compact Arched Top Hanger Tab with Horizontal Clip Slot Hole (matching user photo)
+				const archW = caseW * 0.52;
+				const archH = 0.14;
+				const archShape = new THREE.Shape();
+				archShape.moveTo(-archW / 2, 0);
+				archShape.lineTo(archW / 2, 0);
+				archShape.quadraticCurveTo(archW / 2, archH, 0, archH);
+				archShape.quadraticCurveTo(-archW / 2, archH, -archW / 2, 0);
+
+				// Horizontal capsule slot hole for the lanyard clip
+				const slotW = 0.26;
+				const slotH = 0.06;
+				const slotR = 0.025;
+				const sx = -slotW / 2;
+				const sy = 0.04;
+				const clipHole = new THREE.Path();
+				clipHole.moveTo(sx + slotR, sy);
+				clipHole.lineTo(sx + slotW - slotR, sy);
+				clipHole.quadraticCurveTo(sx + slotW, sy, sx + slotW, sy + slotR);
+				clipHole.lineTo(sx + slotW, sy + slotH - slotR);
+				clipHole.quadraticCurveTo(sx + slotW, sy + slotH, sx + slotW - slotR, sy + slotH);
+				clipHole.lineTo(sx + slotR, sy + slotH);
+				clipHole.quadraticCurveTo(sx, sy + slotH, sx, sy + slotH - slotR);
+				clipHole.lineTo(sx, sy + slotR);
+				clipHole.quadraticCurveTo(sx, sy, sx + slotR, sy);
+				archShape.holes.push(clipHole);
+
+				const archGeo = new THREE.ExtrudeGeometry(archShape, {
+					depth: 0.01,
+					bevelEnabled: true,
+					bevelSegments: 2,
+					steps: 1,
+					bevelSize: 0.003,
+					bevelThickness: 0.003
+				});
+				const archMesh = new THREE.Mesh(archGeo, clearCaseMat);
+				archMesh.position.set(cc.x, cc.y + caseH / 2 - 0.005, cc.z - 0.005);
+				archMesh.castShadow = true;
+				cardMesh.add(archMesh);
+			}
+
+			model.scale.set(2.75, 2.75, 2.75);
 
 			// Center model by its card badge geometry
 			const box = new THREE.Box3().setFromObject(model);
@@ -612,20 +824,20 @@
 	});
 </script>
 
-<div class="relative w-full h-[540px] sm:h-[620px] md:h-[680px] flex items-center justify-center select-none overflow-visible">
+<div class="relative w-full h-[460px] sm:h-[520px] md:h-[560px] flex items-center justify-center select-none overflow-visible">
 	<div
 		bind:this={containerEl}
 		class="w-full h-full touch-none {isDragging ? 'cursor-grabbing' : isHovered ? 'cursor-grab' : 'cursor-default'}"
 		style="touch-action: none;"
 	></div>
 
-	<!-- Minimalist Clean Floating Badge Hint -->
+	<!-- Sleek Modern Comic Badge Hint -->
 	<div
-		class="pointer-events-none absolute bottom-2 right-4 sm:bottom-4 sm:right-6 font-mono text-[11px] text-muted-foreground/60
-			flex items-center gap-2 border border-border/40 bg-card/70 backdrop-blur-md px-3 py-1.5 rounded-full transition-opacity duration-300"
+		class="pointer-events-none absolute bottom-2 right-4 sm:bottom-4 sm:right-6 font-mono text-[11px] text-foreground
+			flex items-center gap-2 border-2 border-amber-400 bg-card px-3 py-1.5 rounded-lg shadow-[3px_3px_0px_0px_#fbbf24] transition-opacity duration-300"
 		class:opacity-20={isDragging}
 	>
-		<span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80 animate-pulse"></span>
-		<span>drag & fling 3D badge</span>
+		<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+		<span class="font-bold tracking-wider">[DRAG & TOSS 3D PASS]</span>
 	</div>
 </div>

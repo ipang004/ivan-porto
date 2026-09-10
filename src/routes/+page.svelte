@@ -64,29 +64,29 @@
 	<meta property="og:description" content="Crafting thoughtful web interfaces using {profile.focus}." />
 </svelte:head>
 
-<main class="min-h-screen bg-background text-foreground relative overflow-hidden bg-studio-grid">
+<main class="min-h-screen text-foreground relative overflow-hidden selection:bg-amber-400 selection:text-black">
 	<NavBar {activeSection} items={navItems} {profile} onNavigate={scrollTo} />
 
-	<div class="relative max-w-6xl mx-auto border-x border-border/40 z-10 bg-background/40">
+	<div class="relative max-w-6xl mx-auto z-10 px-3 sm:px-6">
 		<HeroSection {profile} onNavigate={scrollTo} />
 
 		<div class="border-t border-border/20 relative">
-			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
+			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
+			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
 		</div>
 
 		<StackSection />
 
 		<div class="border-t border-border/20 relative">
-			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
+			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
+			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
 		</div>
 
 		<ProjectsSection {projects} onOpenModal={openModal} />
 
 		<div class="border-t border-border/20 relative">
-			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
+			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
+			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
 		</div>
 
 		<CredentialsSection {credentials} onOpenImage={(item) => selectedCredential = item} />
@@ -94,8 +94,8 @@
 		<JourneySection />
 
 		<div class="border-t border-border/20 relative">
-			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
+			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
+			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-muted-foreground/60 select-none">+</span>
 		</div>
 
 		<ContactSection />
@@ -115,40 +115,35 @@
 		>
 			<button
 				onclick={() => selectedCredential = null}
-				class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 hover:bg-black border border-white/10 flex items-center justify-center text-white transition-colors"
+				class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-amber-400 hover:bg-amber-300 border-2 border-black flex items-center justify-center text-black font-black shadow-[2px_2px_0px_0px_#18181b] transition-transform hover:scale-105 cursor-pointer"
 				aria-label="Close"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+				<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 				</svg>
 			</button>
 
 			<div
 				transition:scale={{ duration: 200, start: 0.95 }}
-				class="relative max-w-4xl w-full bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:max-h-[80vh]"
+				class="relative max-w-4xl w-full bg-white border-4 border-black rounded-2xl overflow-hidden shadow-[10px_10px_0px_0px_#18181b] flex flex-col md:flex-row max-h-[90vh] md:max-h-[80vh]"
 				onclick={(e) => e.stopPropagation()}
 			>
-				<div class="relative w-full md:w-1/2 aspect-4/3 md:aspect-auto overflow-hidden bg-black/40 flex items-center justify-center border-b md:border-b-0 md:border-r border-zinc-900">
-					<img
-						src={selectedCredential.image}
-						alt=""
-						class="absolute inset-0 w-full h-full object-cover blur-xl opacity-40 scale-110"
-					/>
+				<div class="relative w-full md:w-1/2 aspect-4/3 md:aspect-auto overflow-hidden bg-[#faf6ed] flex items-center justify-center border-b md:border-b-0 md:border-r-[2.5px] border-black">
 					<img
 						src={selectedCredential.image}
 						alt={selectedCredential.title}
-						class="relative max-w-[90%] max-h-[90%] object-contain rounded border border-white/5 shadow-xl select-none"
+						class="relative max-w-[90%] max-h-[90%] object-contain rounded border-2 border-black shadow-lg select-none"
 					/>
 				</div>
 
 				<div class="p-6 md:p-8 flex-1 flex flex-col justify-between overflow-y-auto">
 					<div class="space-y-4">
 						<div class="space-y-1">
-							<span class="font-mono text-xs text-primary/80 uppercase tracking-widest">{selectedCredential.category}</span>
+							<span class="font-mono text-xs text-muted-foreground uppercase tracking-widest">[DOSSIER // {selectedCredential.category}]</span>
 							<h3 class="text-xl font-bold text-foreground leading-snug">{selectedCredential.title}</h3>
 						</div>
 
-						<div class="grid grid-cols-2 gap-4 py-3 border-y border-border/30 text-sm font-mono">
+						<div class="grid grid-cols-2 gap-4 py-3 border-y border-border text-sm font-mono">
 							<div>
 								<span class="text-muted-foreground block text-xs mb-0.5">// issuer</span>
 								<span class="text-foreground font-semibold">{selectedCredential.issuer}</span>
@@ -160,17 +155,17 @@
 						</div>
 
 						<div class="space-y-2 pt-2">
-							<span class="font-mono text-xs text-muted-foreground/60 block">// description</span>
-							<p class="text-sm text-zinc-300 leading-relaxed font-sans">
+							<span class="font-mono text-xs text-muted-foreground block">// description</span>
+							<p class="text-sm text-foreground/80 leading-relaxed font-sans">
 								{selectedCredential.description || 'Tidak ada deskripsi penjelasan.'}
 							</p>
 						</div>
 					</div>
 
-					<div class="pt-6 border-t border-border/20 flex justify-end">
+					<div class="pt-6 border-t border-border flex justify-end">
 						<button
 							onclick={() => selectedCredential = null}
-							class="font-mono text-xs px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 text-foreground transition-all duration-300"
+							class="font-mono text-xs px-4 py-2 rounded-lg bg-foreground text-background font-medium hover:bg-foreground/90 transition-all duration-200 cursor-pointer"
 						>
 							Close Details
 						</button>

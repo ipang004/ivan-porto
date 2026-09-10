@@ -9,46 +9,46 @@
 @plugin '@tailwindcss/typography';
 
 :root {
-	--background: oklch(0.99 0 0);
-	--foreground: oklch(0.14 0 0);
-	--card: oklch(0.98 0 0);
-	--card-foreground: oklch(0.14 0 0);
-	--popover: oklch(0.98 0 0);
-	--popover-foreground: oklch(0.14 0 0);
-	--primary: oklch(0.15 0 0);
-	--primary-foreground: oklch(0.98 0 0);
-	--secondary: oklch(0.94 0 0);
-	--secondary-foreground: oklch(0.15 0 0);
-	--muted: oklch(0.95 0 0);
-	--muted-foreground: oklch(0.52 0 0);
-	--accent: oklch(0.93 0 0);
-	--accent-foreground: oklch(0.15 0 0);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.90 0 0);
-	--input: oklch(0.90 0 0);
-	--ring: oklch(0.70 0 0);
+	--background: #f6f1e3; /* Warm Vintage Comic Newsprint */
+	--foreground: #141416; /* Deep Comic Ink */
+	--card: #ffffff; /* Crisp Comic White Panel */
+	--card-foreground: #141416;
+	--popover: #ffffff;
+	--popover-foreground: #141416;
+	--primary: #f59e0b; /* Comic Gold/Amber */
+	--primary-foreground: #000000;
+	--secondary: #0284c7; /* Comic Cyan */
+	--secondary-foreground: #ffffff;
+	--muted: #eae3d0; /* Aged Paper */
+	--muted-foreground: #57534e; /* Inked caption */
+	--accent: #f43f5e; /* Comic Coral */
+	--accent-foreground: #ffffff;
+	--destructive: #ef4444;
+	--border: #18181b; /* Solid Comic Ink Outline */
+	--input: #18181b;
+	--ring: #f59e0b;
 	--radius: 0.75rem;
 }
 
 .dark {
-	--background: oklch(0.135 0.006 260); /* Deep Obsidian #090a0d */
-	--foreground: oklch(0.96 0.003 260); /* Crisp off-white #f4f4f6 */
-	--card: oklch(0.165 0.008 260); /* Matte charcoal #111317 */
-	--card-foreground: oklch(0.96 0.003 260);
-	--popover: oklch(0.165 0.008 260);
-	--popover-foreground: oklch(0.96 0.003 260);
-	--primary: oklch(0.95 0 0); /* High-contrast clean off-white */
-	--primary-foreground: oklch(0.135 0.006 260);
-	--secondary: oklch(0.24 0.01 260); /* Muted slate #1e2127 */
-	--secondary-foreground: oklch(0.92 0.005 260);
-	--muted: oklch(0.20 0.008 260); /* #181a1f */
-	--muted-foreground: oklch(0.62 0.012 260); /* #888d98 */
-	--accent: oklch(0.24 0.01 260);
-	--accent-foreground: oklch(0.96 0.003 260);
-	--destructive: oklch(0.65 0.2 25);
-	--border: oklch(0.23 0.008 260); /* Hairline #23262d */
-	--input: oklch(0.23 0.008 260);
-	--ring: oklch(0.95 0 0);
+	--background: #f6f1e3; /* Warm Vintage Comic Newsprint */
+	--foreground: #141416; /* Deep Comic Ink */
+	--card: #ffffff; /* Crisp Comic White Panel */
+	--card-foreground: #141416;
+	--popover: #ffffff;
+	--popover-foreground: #141416;
+	--primary: #f59e0b; /* Comic Gold */
+	--primary-foreground: #000000;
+	--secondary: #0284c7; /* Comic Cyan */
+	--secondary-foreground: #ffffff;
+	--muted: #eae3d0; /* Aged Newsprint */
+	--muted-foreground: #57534e; /* Comic Gray */
+	--accent: #f43f5e;
+	--accent-foreground: #ffffff;
+	--destructive: #ef4444;
+	--border: #18181b; /* Solid Comic Ink Outline */
+	--input: #18181b;
+	--ring: #f59e0b;
 }
 
 @theme inline {
@@ -85,19 +85,136 @@
 		@apply border-border outline-ring/30;
 	}
 	body {
-		@apply bg-background text-foreground antialiased selection:bg-white/15 selection:text-white;
+		@apply bg-background text-foreground antialiased selection:bg-amber-400 selection:text-black;
 	}
 	html {
 		@apply font-sans;
 	}
 }
 
-/* Minimalist studio subtle grid */
-.bg-studio-grid {
+/* Sticky / Fixed Full Comic Strip Background Wallpaper */
+.bg-comic-wallpaper {
+	position: fixed;
+	inset: 0;
+	z-index: -10;
+	background-color: #1a0808;
+	background-image: url('/background/bg.jpg');
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	pointer-events: none;
+}
+
+/* Authentic Retro Pop-Art Comic Newsprint Background Texture with Ben-Day Halftone Screen */
+.bg-comic-newsprint {
+	background-color: #faf6ed;
 	background-image: 
-		linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-		linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-	background-size: 40px 40px;
+		radial-gradient(rgba(24, 24, 27, 0.13) 1.5px, transparent 1.5px),
+		radial-gradient(rgba(245, 158, 11, 0.1) 1.5px, transparent 1.5px);
+	background-size: 16px 16px, 16px 16px;
+	background-position: 0 0, 8px 8px;
+}
+
+/* Comic Pop Halftone Panels with Color Tints */
+.bg-comic-dots-yellow {
+	background-color: #fef08a;
+	background-image: radial-gradient(rgba(24, 24, 27, 0.15) 1.5px, transparent 1.5px);
+	background-size: 12px 12px;
+}
+
+.bg-comic-dots-cyan {
+	background-color: #bae6fd;
+	background-image: radial-gradient(rgba(24, 24, 27, 0.15) 1.5px, transparent 1.5px);
+	background-size: 12px 12px;
+}
+
+.bg-comic-dots-rose {
+	background-color: #fecdd3;
+	background-image: radial-gradient(rgba(24, 24, 27, 0.15) 1.5px, transparent 1.5px);
+	background-size: 12px 12px;
+}
+
+/* Comic Action Sunburst (Rays) */
+.comic-sunburst {
+	background: repeating-conic-gradient(
+		from 0deg,
+		rgba(245, 158, 11, 0.16) 0deg 15deg,
+		rgba(245, 158, 11, 0.04) 15deg 30deg
+	);
+}
+
+.comic-sunburst-cyan {
+	background: repeating-conic-gradient(
+		from 0deg,
+		rgba(2, 132, 199, 0.14) 0deg 15deg,
+		rgba(2, 132, 199, 0.03) 15deg 30deg
+	);
+}
+
+/* Retro Comic Inked Panels with Hard Offset Shadow */
+.comic-panel {
+	border: 2.5px solid #18181b;
+	background: #ffffff;
+	box-shadow: 4px 4px 0px 0px #18181b;
+	position: relative;
+	transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.comic-panel:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 6px 6px 0px 0px #f59e0b;
+}
+
+/* Comic Speech Balloon with Pointer Tail */
+.comic-bubble {
+	position: relative;
+	border: 2.5px solid #18181b;
+	background: #ffffff;
+	box-shadow: 4px 4px 0px 0px #18181b;
+}
+
+.comic-bubble::before {
+	content: '';
+	position: absolute;
+	bottom: -13px;
+	left: 28px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 13px 10px 0 10px;
+	border-color: #18181b transparent transparent transparent;
+}
+
+.comic-bubble::after {
+	content: '';
+	position: absolute;
+	bottom: -9.5px;
+	left: 30px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 8px 0 8px;
+	border-color: #ffffff transparent transparent transparent;
+}
+
+/* Comic Pop Action Sound Effect Badge (POW, BOOM, BANG) */
+.comic-badge-pow {
+	display: inline-flex;
+	align-items: center;
+	font-family: 'DM Mono', monospace;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	border: 2px solid #18181b;
+	box-shadow: 3px 3px 0px 0px #18181b;
+	transform: rotate(-3deg);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.comic-badge-pow:hover {
+	transform: rotate(0deg) scale(1.05);
+	box-shadow: 4px 4px 0px 0px #18181b;
 }
 
 /* SectionFrame scroll-reveal animation */
