@@ -68,22 +68,7 @@ export const projects: Project[] = [
 		],
 		environment: 'Live Site',
 		href: 'https://books.bukuloka.com/'
-	},
-	// {
-	// 	name: 'Absensi',
-	// 	description:
-	// 		'Aplikasi absensi berbasis mobile web. Memungkinkan pengguna melakukan presensi secara instan melalui browser handphone tanpa perlu menginstal aplikasi native.',
-	// 	detail:
-	// 		'Aplikasi presensi kehadiran berbasis mobile web yang dirancang khusus untuk kenyamanan pengguna tanpa instalasi aplikasi. Memanfaatkan Web API untuk mengakses kamera (swafoto) dan GPS (geolocation) secara real-time dari browser handphone, didukung dengan backend Laravel dan database MySQL untuk verifikasi dan rekap data absensi secara instan.',
-	// 	tags: ['laravel', 'bootstrap', 'mysql'],
-	// 	stackIcons: ['laravel', 'javascript', 'bootstrap', 'mysql', 'webcam'],
-	// 	image: '/projects/absensi/cover.webp',
-	// 	images: [
-	// 		'/projects/absensi/cover.webp'
-	// 	],
-	// 	environment: 'Staging Dev',
-	// 	href: '#'
-	// }
+	}
 ];
 
 export const stack: StackGroup[] = [
@@ -133,7 +118,6 @@ export const credentials: Credential[] = [
 
 export const navItems: NavItem[] = [
 	{ id: 'about', label: 'about.tsx' },
-	// { id: 'stack', label: 'stack.json' },
 	{ id: 'projects', label: 'projects.tsx' },
 	{ id: 'credentials', label: 'credentials.json' },
 	{ id: 'journey', label: 'journey.ts' },

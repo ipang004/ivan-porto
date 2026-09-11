@@ -28,7 +28,7 @@
 
 <section
 	id="about"
-	class="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 overflow-hidden"
+	class="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 overflow-visible"
 >
 	<div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 		<!-- Left Column: Vintage Comic Newsprint Identity -->
@@ -115,7 +115,7 @@
 				</span>
 			</div>
 
-			<div class="w-full max-w-[400px] lg:max-w-[450px] relative z-10">
+			<div class="w-full max-w-[380px] lg:max-w-[420px] relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
 				<!-- 3D Lanyard Component -->
 				<Lanyard />
 			</div>
