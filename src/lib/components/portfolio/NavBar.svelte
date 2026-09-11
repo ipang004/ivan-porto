@@ -25,13 +25,6 @@
 </script>
 
 <header class="sticky top-0 inset-x-0 z-50 select-none">
-	<!-- Top Vintage Comic Strip Header Bar -->
-	<div class="w-full bg-amber-400 border-b-2 border-black py-1 px-4 text-center font-mono text-[10px] sm:text-xs font-black text-black tracking-widest uppercase flex items-center justify-between relative overflow-hidden shadow-sm">
-		<span class="hidden md:inline">★ THE AMAZING IVAN MALDINI CHRONICLES ★</span>
-		<span>ISSUE #01 // COLLECTOR'S EDITION</span>
-		<span class="hidden sm:inline">PRICE: 25¢ // APPROVED BY COMICS CODE</span>
-	</div>
-
 	<nav class="border-b-2 border-black bg-[#160808]/92 backdrop-blur-md shadow-md">
 		<div class="max-w-5xl mx-auto flex items-center h-12 px-4 gap-1">
 			<span class="font-mono text-xs font-black text-white shrink-0 tracking-wider">

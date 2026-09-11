@@ -163,6 +163,16 @@
 			const width = containerEl.clientWidth;
 			const height = containerEl.clientHeight;
 			camera.aspect = width / height;
+
+			// Dynamically adjust camera distance on narrow mobile viewports so the card is perfectly framed
+			if (width < 340) {
+				camera.position.z = 9.8;
+			} else if (width < 400) {
+				camera.position.z = 9.4;
+			} else {
+				camera.position.z = 9.0;
+			}
+
 			camera.updateProjectionMatrix();
 			renderer.setSize(width, height);
 		}
@@ -218,10 +228,10 @@
 	});
 </script>
 
-<div class="relative w-full h-[660px] sm:h-[720px] md:h-[780px] flex items-center justify-center select-none overflow-visible">
+<div class="relative w-full h-[500px] sm:h-[620px] lg:h-[780px] flex items-center justify-center select-none overflow-visible">
 	<div
 		bind:this={containerEl}
-		class="w-full h-full touch-none {isDragging ? 'cursor-grabbing' : isHovered ? 'cursor-grab' : 'cursor-default'}"
-		style="touch-action: none;"
+		class="w-full h-full {isDragging ? 'cursor-grabbing' : isHovered ? 'cursor-grab' : 'cursor-default'}"
+		style="touch-action: {isDragging ? 'none' : 'pan-y'};"
 	></div>
 </div>

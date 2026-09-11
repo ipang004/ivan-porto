@@ -102,20 +102,20 @@
 		</div>
 
 		<!-- Right Column: Interactive 3D Lanyard Pass -->
-		<div bind:this={rightColEl} class="lg:col-span-6 flex justify-center items-center relative">
+		<div bind:this={rightColEl} class="lg:col-span-6 flex justify-center items-center relative mt-8 sm:mt-10 lg:mt-0">
 			<!-- Floating Comic Sound Effect Badges -->
-			<div class="absolute -top-3 right-4 sm:right-10 z-20 pointer-events-none">
-				<span class="comic-badge-pow bg-rose-500 text-yellow-300 px-3 py-1 rounded-md text-sm sm:text-base">
+			<div class="absolute top-2 right-3 sm:right-6 lg:-top-3 lg:right-10 z-20 pointer-events-none">
+				<span class="comic-badge-pow bg-rose-500 text-yellow-300 px-2.5 sm:px-3 py-1 rounded-md text-xs sm:text-base">
 					💥 POW!
 				</span>
 			</div>
-			<div class="absolute -bottom-2 left-4 sm:left-12 z-20 pointer-events-none">
-				<span class="comic-badge-pow bg-sky-500 text-white px-2.5 py-1 rounded-md text-xs rotate-6">
+			<div class="absolute bottom-2 left-3 sm:left-6 lg:-bottom-2 lg:left-12 z-20 pointer-events-none">
+				<span class="comic-badge-pow bg-sky-500 text-white px-2 sm:px-2.5 py-1 rounded-md text-[10px] sm:text-xs rotate-6">
 					⚡ PASS VERIFIED
 				</span>
 			</div>
 
-			<div class="w-full max-w-[380px] lg:max-w-[420px] relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
+			<div class="w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[420px] relative z-10 mt-0 lg:-mt-24">
 				<!-- 3D Lanyard Component -->
 				<Lanyard />
 			</div>
