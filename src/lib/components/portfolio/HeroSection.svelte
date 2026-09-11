@@ -75,7 +75,7 @@
 				<Button
 					onclick={() => onNavigate('contact')}
 					variant="outline"
-					class="rounded-xl px-6 py-5 text-sm font-bold border-2 border-black bg-white text-black hover:bg-zinc-100 shadow-[4px_4px_0px_0px_#18181b] hover:shadow-[2px_2px_0px_0px_#18181b] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
+					class="rounded-xl px-6 py-5 text-sm font-bold border-2 border-black text-white hover:bg-zinc-100 hover:text-slate-300 shadow-[4px_4px_0px_0px_#18181b] hover:shadow-[2px_2px_0px_0px_#18181b] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
 				>
 					Get in Touch
 				</Button>
