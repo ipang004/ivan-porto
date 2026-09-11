@@ -33,13 +33,7 @@
 	<div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 		<!-- Left Column: Vintage Comic Newsprint Identity -->
 		<div bind:this={leftColEl} class="lg:col-span-6 flex flex-col items-start text-left space-y-6 z-10">
-			<!-- Comic Pop Pill -->
-			<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md border-2 border-black bg-amber-400 text-black shadow-[3px_3px_0px_0px_#18181b] select-none">
-				<span class="w-2 h-2 rounded-full bg-black animate-pulse"></span>
-				<span class="font-mono text-xs font-black tracking-wider">
-					ISSUE 01 // AVAILABLE FOR ROLES · JAKARTA
-				</span>
-			</div>
+
 
 			<!-- Headline -->
 			<div class="space-y-2">

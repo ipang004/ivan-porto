@@ -16,10 +16,5 @@
                 © {year} · RETRO COMIC EDITION · ISSUE NO. 01
             </p>
         </div>
-
-        <div class="flex items-center gap-2 border-2 border-black bg-amber-400 text-black px-3 py-1 rounded-md shadow-[2px_2px_0px_0px_#000] font-black">
-            <span class="w-2 h-2 rounded-full bg-black animate-pulse"></span>
-            <span>AVAILABLE FOR HIRE</span>
-        </div>
     </div>
 </footer>
