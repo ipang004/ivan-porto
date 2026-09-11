@@ -64,9 +64,9 @@
 	<meta property="og:description" content="Crafting thoughtful web interfaces using {profile.focus}." />
 </svelte:head>
 
-<main class="min-h-screen text-foreground relative overflow-hidden selection:bg-amber-400 selection:text-black">
-	<NavBar {activeSection} items={navItems} {profile} onNavigate={scrollTo} />
+<NavBar {activeSection} items={navItems} {profile} onNavigate={scrollTo} />
 
+<main class="min-h-screen text-foreground relative overflow-x-clip selection:bg-amber-400 selection:text-black">
 	<div class="relative max-w-6xl mx-auto z-10 px-3 sm:px-6">
 		<HeroSection {profile} onNavigate={scrollTo} />
 
