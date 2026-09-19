@@ -54,63 +54,56 @@
 		>
 			<div class="flip-inner" class:is-flipped={isFlipped}>
 
-				<div class="flip-front group relative bg-card border border-border/60 rounded-2xl p-5
-					hover:border-border transition-colors duration-300
-					hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)]">
+				<div class="flip-front group relative bg-white border-[2.5px] border-black rounded-2xl p-5
+					shadow-[4px_4px_0px_0px_#18181b]
+					transition-all duration-200
+					hover:shadow-[7px_7px_0px_0px_#f59e0b] hover:-translate-x-0.5 hover:-translate-y-0.5">
 
-					<span class="hidden md:block absolute top-3 right-3 font-mono text-[12px] px-2 py-0.5 rounded-full select-none transition-colors
-						{milestone.type === 'education'
-							? 'text-primary/50 group-hover:text-primary'
-							: milestone.type === 'internship'
-							? 'text-secondary/50  group-hover:text-secondary'
-							: 'text-accent/50 group-hover:text-accent'}">
-						click to flip ↩
+					<span class="hidden md:block absolute top-3 right-3 font-mono text-[11px] font-black px-2.5 py-0.5 rounded bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0px_0px_#18181b] select-none">
+						[flip card ↩]
 					</span>
 
 					<div class="flex items-center gap-3 mb-3">
-						<div class="w-10 h-10 flex items-center justify-center rounded-xl border shrink-0 {colorMap[milestone.type].icon}">
+						<div class="w-10 h-10 flex items-center justify-center rounded-xl border-2 border-black shrink-0 shadow-[2px_2px_0px_0px_#18181b]
+							{milestone.type === 'education' ? 'bg-amber-400 text-black' : milestone.type === 'internship' ? 'bg-sky-400 text-black' : 'bg-rose-400 text-black'}">
 							{#if milestone.type === 'education'}
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
 							{:else if milestone.type === 'internship'}
-								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary"><path d="M15 2H9a2 2 0 0 0-2 2v2H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V4a2 2 0 0 0-2-2z"/><path d="M7 6h10"/><path d="M3 11h18"/></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H9a2 2 0 0 0-2 2v2H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V4a2 2 0 0 0-2-2z"/><path d="M7 6h10"/><path d="M3 11h18"/></svg>
 							{:else}
-								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="m12 14-3-3 3-3 3 3-3 3Z"/><path d="M4.5 16.5 12 9l7.5 7.5"/></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14-3-3 3-3 3 3-3 3Z"/><path d="M4.5 16.5 12 9l7.5 7.5"/></svg>
 							{/if}
 						</div>
 						<div>
-							<p class="font-semibold text-foreground leading-tight">{milestone.title}</p>
-							<p class="font-mono text-xs text-muted-foreground">{milestone.subtitle}</p>
+							<p class="font-black text-foreground leading-tight">{milestone.title}</p>
+							<p class="font-mono text-xs text-stone-600 font-bold">{milestone.subtitle}</p>
 						</div>
 					</div>
 
 					<div class="flex flex-wrap items-center gap-2 mb-3">
-						<span class="font-mono text-[11px] px-2.5 py-1 rounded-full border {colorMap[milestone.type].badge}">
-							{milestone.type === 'education' ? '// education' : milestone.type === 'internship' ? '// internship' : '// work'}
+						<span class="font-mono text-[11px] px-2.5 py-0.5 rounded border-2 border-black font-black shadow-[1.5px_1.5px_0px_0px_#18181b]
+							{milestone.type === 'education' ? 'text-black bg-amber-300' : milestone.type === 'internship' ? 'text-black bg-sky-300' : 'text-black bg-rose-300'}">
+							★ [{milestone.type.toUpperCase()}]
 						</span>
-						<span class="font-mono text-xs text-muted-foreground/60">{milestone.period}</span>
+						<span class="font-mono text-xs text-stone-600 font-bold">{milestone.period}</span>
 					</div>
 
-					<p class="font-mono text-xs text-muted-foreground/50 mb-2 flex items-center gap-1.5">
-						<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+					<p class="font-mono text-xs text-stone-600 font-bold mb-2 flex items-center gap-1.5">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
 						</svg>
 						{milestone.place}
 					</p>
 
-					<p class="text-sm text-muted-foreground leading-relaxed">{milestone.description}</p>
+					<p class="text-sm text-stone-700 font-medium leading-relaxed">{milestone.description}</p>
 
-					<p class="md:hidden font-mono text-[11px] mt-4 border-t border-border/20 pt-3 text-right
-						{milestone.type === 'education'
-							? 'text-primary/60'
-							: milestone.type === 'internship'
-							? 'text-secondary/60'
-							: 'text-accent/60'}">
-						click to flip ↩
+					<p class="md:hidden font-mono text-[11px] mt-4 border-t-2 border-black/10 pt-3 text-right text-amber-600 font-black">
+						[tap to reveal ↩]
 					</p>
 				</div>
 
-				<div class="flip-back rounded-2xl overflow-hidden border border-border/60 bg-card flex flex-col md:flex-row h-full">
+				<div class="flip-back rounded-2xl overflow-hidden border-[2.5px] border-black bg-white flex flex-col md:flex-row h-full shadow-[4px_4px_0px_0px_#18181b]">
 					<div class="relative w-full md:w-1/2 h-48 md:h-full bg-muted/30 overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-border/30">
 						<div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-muted-foreground/30 z-0">
 							<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

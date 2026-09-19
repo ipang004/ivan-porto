@@ -14,10 +14,8 @@
 	
 </script>
 
-<SectionFrame id="credentials" eyebrow="achievements" title="Credentials & Experience">
+<SectionFrame id="credentials" eyebrow="accreditations" title="Credentials & Honors">
 	<div class="space-y-8">
-
-
 		<!-- Grid Layout -->
 		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 			{#each filteredCredentials as item (item.title)}
@@ -25,35 +23,34 @@
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div 
 					onclick={() => onOpenImage(item)}
-					class="group relative flex flex-col rounded-2xl border border-border bg-card overflow-hidden cursor-pointer
-						transition-all duration-500 hover:border-primary/40 hover:shadow-[0_10px_30px_-15px_var(--primary)]"
+					class="group relative flex flex-col rounded-2xl border-[2.5px] border-black bg-white overflow-hidden cursor-pointer
+						shadow-[4px_4px_0px_0px_#18181b] hover:shadow-[7px_7px_0px_0px_#f59e0b] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
 				>
-					<!-- Image Frame with Dynamic Blur Background for aspect ratio fitting -->
-					<div class="relative w-full aspect-4/3 overflow-hidden bg-zinc-950 flex items-center justify-center">
-						<!-- Real Image (Zoomed Cover focusing on the top of the certificate) -->
+					<!-- Image Frame -->
+					<div class="relative w-full aspect-4/3 overflow-hidden bg-[#faf6ed] flex items-center justify-center border-b-[2.5px] border-black">
 						<img 
 							src={item.image} 
 							alt={item.title} 
 							class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none" 
 						/>
 						
-						<!-- Hover overlay -->
-						<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-							<div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary transform scale-90 group-hover:scale-100 transition-transform duration-300">
-								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m4-3H6" />
-								</svg>
+						<!-- Hover overlay with comic view badge -->
+						<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+							<div class="px-4 py-2 rounded-lg bg-amber-400 border-2 border-black text-black font-mono text-xs font-black shadow-[3px_3px_0px_0px_#18181b] transform scale-90 group-hover:scale-100 transition-transform duration-200">
+								[ INSPECT CERTIFICATE ]
 							</div>
 						</div>
 					</div>
 
 					<!-- Content info -->
-					<div class="p-5 border-t border-border/30 space-y-1 bg-zinc-950/20">
-						<span class="font-mono text-[10px] text-primary/80 uppercase tracking-wider">{item.category}</span>
-						<h4 class="font-semibold text-sm text-foreground line-clamp-1 group-hover:text-primary transition-colors">{item.title}</h4>
-						<p class="text-xs text-muted-foreground font-mono flex justify-between">
-							<span>{item.issuer}</span>
-							<span>{item.date}</span>
+					<div class="p-4 space-y-1 bg-white">
+						<span class="font-mono text-[10px] uppercase tracking-wider font-black {item.category === 'award' ? 'text-amber-600' : item.category === 'pkl' ? 'text-emerald-700' : 'text-sky-700'}">
+							★ [{item.category.toUpperCase()}]
+						</span>
+						<h4 class="font-black text-sm text-foreground line-clamp-1 group-hover:text-amber-600 transition-colors">{item.title}</h4>
+						<p class="text-xs text-stone-600 font-mono font-bold flex justify-between pt-1">
+							<span class="truncate max-w-[65%]">{item.issuer}</span>
+							<span class="text-stone-800">{item.date}</span>
 						</p>
 					</div>
 				</div>

@@ -35,10 +35,16 @@
 	}
 </script>
 
-<section {id} class="max-w-5xl mx-auto px-4 py-15 scroll-mt-16 {className}">
+<section {id} class="max-w-5xl mx-auto px-4 py-16 scroll-mt-16 {className}">
 	<div use:reveal class="reveal">
-		<p class="font-mono text-xs text-secondary mb-3">// {eyebrow}</p>
-		<h2 class="font-display text-3xl font-semibold mb-8 {titleClass}">{title}</h2>
+		<div class="flex items-center gap-3 mb-3 select-none">
+			<span class="font-mono text-xs font-black text-black tracking-widest px-3.5 py-1 border-2 border-black bg-amber-400 rounded-md shadow-[3px_3px_0px_0px_#18181b]">
+				★ CHAPTER // {eyebrow.toUpperCase()} ★
+			</span>
+			<div class="h-[2.5px] flex-1 bg-black"></div>
+			<span class="font-mono text-xs font-black text-rose-500 select-none">● ● ●</span>
+		</div>
+		<h2 class="text-3xl sm:text-4xl font-black text-white drop-shadow-[2px_2px_0px_#000] tracking-tight mb-8 {titleClass}">{title}</h2>
 		{@render children()}
 	</div>
 </section>

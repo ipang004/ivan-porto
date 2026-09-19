@@ -46,18 +46,18 @@ export const journey: Milestone[] = [
 
 export const colorMap: Record<MilestoneType, { dot: string; badge: string; icon: string }> = {
 	education: {
-		dot: 'bg-primary shadow-[0_0_12px_3px_var(--color-primary)]',
-		badge: 'bg-primary/10 text-primary border-primary/30',
-		icon: 'bg-primary/10 border-primary/20'
+		dot: 'bg-foreground border border-background',
+		badge: 'bg-muted/40 text-foreground border-border',
+		icon: 'bg-muted/40 border-border text-foreground'
 	},
 	internship: {
-		dot: 'bg-secondary shadow-[0_0_12px_3px_var(--color-secondary)]',
-		badge: 'bg-secondary/10 text-secondary border-secondary/30',
-		icon: 'bg-secondary/10 border-secondary/20'
+		dot: 'bg-foreground border border-background',
+		badge: 'bg-muted/40 text-foreground border-border',
+		icon: 'bg-muted/40 border-border text-foreground'
 	},
 	work: {
-		dot: 'bg-accent shadow-[0_0_12px_3px_var(--color-accent)]',
-		badge: 'bg-accent/10 text-accent border-accent/30',
-		icon: 'bg-accent/10 border-accent/20'
+		dot: 'bg-foreground border border-background',
+		badge: 'bg-muted/40 text-foreground border-border',
+		icon: 'bg-muted/40 border-border text-foreground'
 	}
 };
