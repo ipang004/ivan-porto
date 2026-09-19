@@ -37,24 +37,19 @@
 
 			<!-- Headline -->
 			<div class="space-y-2">
-				<h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white drop-shadow-[3px_3px_0px_#000] leading-[1.08]">
+				<h1 class="text-5xl sm:text-7xl lg:text-7xl xl:text-7xl font-black tracking-tight text-white drop-shadow-[3px_3px_0px_#000] sm:drop-shadow-[5px_5px_0px_#000] leading-[1.02]">
 					Hello, I'm <br class="hidden sm:inline" />
-					<span class="text-amber-400 relative inline-block underline decoration-4 underline-offset-8 decoration-black">
+					<span class="text-amber-400 relative inline-block underline decoration-4 sm:decoration-[6px] underline-offset-8 sm:underline-offset-12 decoration-black">
 						{profile.name}.
 					</span>
 				</h1>
-				<p class="font-mono text-base sm:text-lg text-sky-300 font-black tracking-tight drop-shadow-[2px_2px_0px_#000]">
-					[ CHAPTER: FRONTEND ARCHITECT // SVELTEKIT & TS ]
-				</p>
 			</div>
 
 			<!-- Comic Dialogue Balloon (Speech Bubble) -->
 			<div class="comic-bubble p-4 sm:p-5 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_#18181b] text-sm sm:text-base leading-relaxed max-w-xl">
 				<span class="font-mono text-xs font-black text-amber-500 block mb-1.5">// BIO DISPATCH</span>
 				<p class="text-foreground font-medium">
-					I craft clean, high-performance web applications with a focus on tactile user interfaces, 
-					type-safe architecture, and production reliability. Currently engineering frontends at 
-					<span class="text-sky-600 font-bold">PT Yapindo Jaya Abadi</span>.
+					A Frontend Developer who loves exploring and learning new things in web development.
 				</p>
 			</div>
 

@@ -237,3 +237,8 @@ export function buildHolderCase(card: THREE.Mesh, envMap: THREE.Texture) {
 	backPlatePatch.position.set(0, 0.9446, 0.0008);
 	card.add(backPlatePatch);
 }
+
+
+const result = users
+    .filter( user => (user.active && user.age >= 18) || user.role === "admin" )
+    .map( user => user.name );
