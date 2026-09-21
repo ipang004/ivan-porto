@@ -82,24 +82,13 @@
 		style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), var(--primary), transparent 80%);"
 	></div>
 
-	<NavBar {activeSection} items={navItems} {profile} onNavigate={scrollTo} />
+	<HeroSection {profile} onNavigate={scrollTo} />
+
+	<StackSection />
+
+	<ProjectsSection {projects} onOpenModal={openModal} />
 
 	<div class="relative max-w-5xl mx-auto border-x border-border/20 z-10 bg-background/20 backdrop-blur-[1px]">
-		<HeroSection {profile} onNavigate={scrollTo} />
-
-		<div class="border-t border-border/20 relative">
-			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-		</div>
-
-		<StackSection />
-
-		<div class="border-t border-border/20 relative">
-			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-			<span class="absolute -top-2 -right-2 font-mono text-[10px] text-zinc-600 select-none">+</span>
-		</div>
-
-		<ProjectsSection {projects} onOpenModal={openModal} />
 
 		<div class="border-t border-border/20 relative">
 			<span class="absolute -top-2 -left-2 font-mono text-[10px] text-zinc-600 select-none">+</span>

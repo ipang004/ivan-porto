@@ -1,13 +1,5 @@
 <script lang="ts">
-	import type { Profile } from './types';
-
-	let {
-		profile,
-		onNavigate
-	}: {
-		profile: Profile;
-		onNavigate: (id: string) => void;
-	} = $props();
+	let { onNavigate }: { onNavigate?: (id: string) => void } = $props();
 
 	function handleNav(id: string) {
 		if (onNavigate) {
@@ -45,7 +37,7 @@
 			<!-- Brand / Logo Tengah -->
 			<div class="flex items-center gap-1.5 px-4 py-1.5 font-bold tracking-widest text-white text-sm sm:text-base border-x border-zinc-700/60 mx-1">
 				<span class="w-5 h-5 rounded-full bg-[#E87A38] text-white flex items-center justify-center text-[10px] font-black">JC</span>
-				<span>{profile.name.toUpperCase()}</span>
+				<span>IVAN</span>
 			</div>
 
 			<button 
@@ -97,7 +89,7 @@
 				</svg>
 
 				<h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-[#111113] leading-[1.08] max-w-4xl">
-					I'm <span class="text-[#E87A38]">{profile.name.split(' ')[0]}</span>,<br />
+					I'm <span class="text-[#E87A38]">Ivan</span>,<br />
 					Product Designer
 				</h1>
 			</div>
@@ -109,7 +101,7 @@
 				“
 			</div>
 			<p class="text-xs font-medium text-[#111113] leading-relaxed">
-				{profile.name}'s Exceptional product design ensure our website's success.
+				Ivan's Exceptional product design ensure our website's success.
 			</p>
 			<p class="text-xs font-bold text-[#111113]">
 				Highly Recommended
@@ -138,7 +130,7 @@
 		<div class="relative z-20 flex justify-center items-end pointer-events-none">
 			<img 
 				src="/ivan-cutout.png" 
-				alt={profile.name} 
+				alt="Ivan" 
 				class="max-h-[460px] sm:max-h-[520px] md:max-h-[580px] w-auto object-contain object-bottom select-none pointer-events-none drop-shadow-md" 
 				onerror={(e) => {
 					// Fallback jika /ivan-cutout.png belum diunggah
